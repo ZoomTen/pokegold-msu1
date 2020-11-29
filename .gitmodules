@@ -1,0 +1,3 @@
+[submodule "tools/flips"]
+	path = tools/flips
+	url = https://github.com/Alcaro/Flips
