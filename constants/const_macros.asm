@@ -42,6 +42,10 @@ ENDM
 ; Patch: define shim locations
 
 define_location: MACRO
+if _NARG >= 3
+\1 EQU (\3 % $4000)
+BANK_\1 EQU \2
+else
 if (\2 % $4000) < $4000
 loc_addr = ((\2 % $4000) + $4000)
 else
@@ -50,6 +54,7 @@ endc
 loc_bank = (\2 / $4000)
 \1 EQU loc_addr
 BANK_\1 EQU loc_bank
+endc
 ENDM
 
 define_home: MACRO

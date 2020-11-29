@@ -12,4 +12,5 @@ include "offsets/english.asm"
 
 ; patch list
 include "patches/play_music.asm"
-;include "patches/msu1.asm"
+include "patches/msu1.asm"
+include "patches/bank_02.asm"

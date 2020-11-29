@@ -21,8 +21,19 @@ ENDC
 	define_home FadeToMapMusic,  $3e9a
 
 ; bank 02
-	; EA EA EA EA EA 60 EA EA FF 7F 36 4F B0 7A 00 00
-	define_location	DataSndPacket1,  $a1e5
+	define_location MaskEnFreezePacket, $02, $61c5
+; these "default data" should be $10 bytes each :)
+	define_location DataSndPacket1, $02, $61e5
+	define_location DataSndPacket2, $02, $61f5
+	define_location DataSndPacket3, $02, $6205
+	define_location DataSndPacket4, $02, $6215
+	define_location DataSndPacket5, $02, $6225
+	define_location DataSndPacket6, $02, $6235
+	define_location DataSndPacket7, $02, $6245
+	define_location DataSndPacket8, $02, $6255
+
+	define_location _PushSGBPals, $9c87
+	define_location _InitSGBBorderPals, $9d4a
 
 ; bank 3a
 	define_location _InitSound,      $e8000

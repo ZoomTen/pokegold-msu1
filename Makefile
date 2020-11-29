@@ -6,7 +6,7 @@
 
 
 # tools
-FLIPS ?= tools/Flips/flips
+FLIPS ?= tools/flips/flips
 
 RGBDS ?= /usr/bin
 ASM   ?= $(RGBDS)/rgbasm
@@ -42,7 +42,7 @@ $(pokesilver_msu1-obj):	ASM_FLAGS += -D _SILVER
 
 
 # general rules
-%.o: patches/msu1/_bootstrap.asm patches/* offsets/*
+%.o: patches/msu1/_bootstrap.asm patches.asm patches/* offsets/*
 	$(ASM) $(ASM_FLAGS) -o $@ patches.asm
 
 %.gbc: $$(%-obj)

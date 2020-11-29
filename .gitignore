@@ -34,3 +34,9 @@
 
 # hack: things prefixed with #
 \#*/
+
+# patches
+*.bps
+
+# generated file
+patches/msu1/_bootstrap.asm
