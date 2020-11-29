@@ -10,6 +10,8 @@ ENDC
 
 ; constants
 ; ram locations
+	define_location wMusicFade,    0, $c1a7
+	define_location wMusicFadeID,  0, $c1a9
 
 ; stuff to patch
 ; home bank
@@ -40,3 +42,4 @@ ENDC
 	define_location _InitSound,      $e8000
 	; CD ?? ?? 21 ?? ?? 73 23 72 21 ?? ?? 19 19 19 2A ...
 	define_location _PlayMusic,      $e8b30
+	define_location FadeMusic,  $3a, $4358

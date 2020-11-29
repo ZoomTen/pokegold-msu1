@@ -1,5 +1,33 @@
 SECTION "Bank 2 Code", ROMX[Bank02_FreeSpace], BANK[$02]
 
+; play music with fading in
+PATCH_PlayMusic_WithFade:
+	ld a, [wIsInFade]
+	and a
+	ret nz
+	ldh a, [hSGB]
+	and a
+	ret z
+	push de
+	  ld a, [wMusicFadeID]
+	  and a
+	  jr z, .force_fade_out
+	  ld e, a
+	  xor a
+	  ld d, a
+	  call SGB_PlayMusic_Common
+	  jr .end
+.force_fade_out
+	  xor a
+	  ld d, a
+	  ld e, a
+	  call SGB_PlayMusic_Common
+.end
+	pop de
+	ld a, 1
+	ld [wIsInFade], a
+	ret
+; force no fade
 ; see patches/play_music.asm
 PATCH_PlayMusic_Redirect:
 	ldh a, [hSGB]
@@ -16,7 +44,7 @@ PATCH_PlayMusic_Redirect:
 	ret
 ; SGB code goes here
 .on_sgb
-	ld a, 1
+	xor a
 	ld [wCheckAndFadeMusicID], a
 	; fallback here
 
@@ -54,7 +82,14 @@ SGB_PlayMusic_Common:
 	ld hl, wMSU1PacketSend
 	jp _PushSGBPals
 .stop_music
+	ld a, [wCheckAndFadeMusicID]
+	and a, %00000010		; grab just the fade bit
+	jr z, .stop_nofade
+	ld hl, FadeToSilenceMusicPacket
+	jr .push_stop_packet
+.stop_nofade
 	ld hl, StopMusicPacket
+.push_stop_packet
 	jp _PushSGBPals
 
 ; see patches/msu1.asm
@@ -76,4 +111,7 @@ DuckMusicPacket:: sgb_data_snd $1807, $0, 1
 	ds 10, 0
 UnduckMusicPacket:: sgb_data_snd $1807, $0, 1
 	db  0
+	ds 10, 0
+FadeToSilenceMusicPacket:: sgb_data_snd $1800, $0, 1
+	db  %00000010
 	ds 10, 0

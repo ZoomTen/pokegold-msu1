@@ -32,7 +32,7 @@ all: $(patches)
 gold: pokegold_msu1.bps
 silver: pokesilver_msu1.bps
 clean:
-	rm -f $(patches) $(patches:.bps=.gbc) $(patches:.bps=.map) $(pokegold_msu1-obj) $(pokesilver_msu1-obj)
+	rm -f $(patches) $(patches:.bps=.gbc) $(patches:.bps=.map) $(patches:.bps=.sym) $(pokegold_msu1-obj) $(pokesilver_msu1-obj)
 	$(MAKE) clean -C patches/msu1/
 
 
@@ -46,7 +46,7 @@ $(pokesilver_msu1-obj):	ASM_FLAGS += -D _SILVER
 	$(ASM) $(ASM_FLAGS) -o $@ patches.asm
 
 %.gbc: $$(%-obj)
-	$(LINK) -m $*.map -O "$($*-baserom)" -o $@ $^
+	$(LINK) -m $*.map -n $*.sym -O "$($*-baserom)" -o $@ $^
 	$(FIX) -v $@
 
 %.bps: %.gbc
