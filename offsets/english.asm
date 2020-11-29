@@ -13,6 +13,7 @@ ENDC
 
 ; stuff to patch
 ; home bank
+	define_home DelayFrame,       $32e
 	; E5 D5 C5 F5 F0 9F F5 3E 3A E0 9F EA 00 20 7B A7 28 05 CD ?? ?? 18 03 CD 00 40 F1 E0 9F EA 00 20 F1 C1 D1 E1 C9
 	define_home PlayMusic,       $3d98
 	; E5 D5 C5 F5 F0 9F F5 3E 3A E0 9F EA 00 20 D5 11 00 00 CD ?? ?? CD ?? ?? D1 CD ?? ?? F1 E0 9F EA 00 20 F1 C1 D1 E1 C9
