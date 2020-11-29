@@ -43,7 +43,7 @@ ENDM
 
 define_location: MACRO
 if _NARG >= 3
-\1 EQU (\3 % $4000)
+\1 EQU \3
 BANK_\1 EQU \2
 else
 if (\2 % $4000) < $4000
