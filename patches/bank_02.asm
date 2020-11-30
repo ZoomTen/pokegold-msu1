@@ -121,4 +121,4 @@ FadeToSilenceMusicPacket:: sgb_data_snd $1800, $0, 1
 	db  %00000010
 	ds 10, 0
 
-include "patches/msu1/msu1_looping_modes.asm"
+include "patches/msu1_looping_modes.asm"

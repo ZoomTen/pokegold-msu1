@@ -116,13 +116,14 @@ Interrupt_MSU1:
 	sep #$20	;  8 bit a
 	lda $4210	; acknowledge interrupt
 
+	lda   i_ask_restart
+	bit.b #%11100011
+	bne   .process_audio
+
 	lda   f_fading
 	bit.b #%00000010
 	bne   .do_fade          ; if we are fading out, jump to fade routine
 
-	lda   i_ask_restart
-	bit.b #%11100011
-	bne   .process_audio
 	jmp   .skip		; if we're not asking for anything, skip processing
 
 .process_audio:
@@ -143,7 +144,7 @@ Interrupt_MSU1:
 	lda   i_volume
 	sta   v_fade_volume
 	sta   !MSU_VOLUME	; initial volume
-	bra .skip		; end here
+	bra .reset_restart_flag	; end here
 
 .stop_music:
 	bit   !MSU_STATUS
@@ -204,14 +205,15 @@ Interrupt_MSU1:
 	lda   f_fading
 	bit.b #%00000001
 	bne   .restart_song	; if we also asked for a restart, do that
-	stz   i_volume		; otherwise, zero out track volume (see .reset_volume)
+	;stz   i_volume		; otherwise, zero out track volume (see .reset_volume)
 	stz   !MSU_VOLUME
 
 ; and clear flags and fall through
 
 .reset_flags:
-	stz   i_ask_restart
 	stz   f_fading
+.reset_restart_flag:
+	stz   i_ask_restart
 .skip:
 	plp
 	rti	; return from interrupt

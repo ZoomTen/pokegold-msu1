@@ -52,5 +52,5 @@ $(pokesilver_msu1-obj):	ASM_FLAGS += -D _SILVER
 %.bps: %.gbc
 	$(FLIPS) --create --bps-delta "$($*-baserom)" $^ $@
 
-patches/msu1/_bootstrap.asm:
+patches/msu1/_bootstrap.asm: patches/msu1/snes/bootstrap.asm
 	$(MAKE) -C patches/msu1/
