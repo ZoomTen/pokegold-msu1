@@ -1,5 +1,5 @@
 SECTION "Play Music", ROM0[PlayMusic]
-PATCH_PlayMusic:
+PATCH_PlayMusic::
 	push hl
 	push de
 	push bc
@@ -15,7 +15,7 @@ PlayMusic_Common:
 	ret
 
 SECTION "Play Music with Silence", ROM0[PlayMusic2]
-PATCH_PlayMusic2:
+PATCH_PlayMusic2::
 	push hl
 	push de
 	push bc
@@ -35,3 +35,8 @@ PATCH_PlayMusic2:
 	pop de
 	pop hl
 	ret
+
+SECTION "Play Music in Script", ROMX[Script_playmusic], BANK[BANK_Script_playmusic]
+PATCH_Script_playmusic::
+	call DelayFrame
+	call DelayFrame		; delay a few frames to make the SGB happy
