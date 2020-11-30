@@ -1,4 +1,6 @@
 MSU1_LoopingModes:
+; Music_Nothing
+	db 0
 ; Music_TitleScreen
 	db MSU1_PLAY
 ; Music_Route1

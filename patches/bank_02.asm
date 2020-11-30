@@ -76,8 +76,13 @@ SGB_PlayMusic_Common:
 					; wMSU1PacketSend + 7
 	inc hl				; wMSU1PacketSend + 8
 	inc hl				; wMSU1PacketSend + 9
-	ld a, 1				; XXX: Looping mode
-	ld [hl], a
+; determine looping mode
+	push hl
+	ld hl, MSU1_LoopingModes
+	add hl, de
+	ld a, [hl]
+	pop hl
+	ld [hl], a			; set looping mode
 ; send the packet over
 	ld hl, wMSU1PacketSend
 	jp _PushSGBPals
@@ -115,3 +120,5 @@ UnduckMusicPacket:: sgb_data_snd $1807, $0, 1
 FadeToSilenceMusicPacket:: sgb_data_snd $1800, $0, 1
 	db  %00000010
 	ds 10, 0
+
+include "patches/msu1/msu1_looping_modes.asm"

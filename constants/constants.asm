@@ -13,4 +13,4 @@ wMSU1PacketSend		equ $df20
 
 ; MSU1 playing modes
 MSU1_PLAY	equ 1
-MSU1_LOOP	equ 2
+MSU1_LOOP	equ 3
