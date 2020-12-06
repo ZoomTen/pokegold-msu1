@@ -26,6 +26,8 @@ FadeMusic_CheckFade::
 	ld a, [wMusicFade]
 	and a
 	jr z, .nofade
+	bit 7, a
+	jr nz, .nofade
 	ld a, %00000010
 	ld [wCheckAndFadeMusicID], a
 	farcall PATCH_PlayMusic_WithFade	; see patches/bank_02.asm
