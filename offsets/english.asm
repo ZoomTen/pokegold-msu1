@@ -17,9 +17,11 @@ ENDC
 ; stuff to patch
 ; home bank
 	define_home DelayFrame,       $32e
+	define_home GetScriptByte,   $27f7
 	define_home PlayMusic,       $3d98
 	define_home PlayMusic2,      $3dbd
 	define_home FadeToMapMusic,  $3e9a
+	define_home MaxVolume,       $3e75
 ;	define_home RestartMapMusic, $3f25
 
 ; bank 02
