@@ -26,8 +26,13 @@ FadeMusic_CheckFade::
 	ld a, [wMusicFade]
 	and a
 	jr z, .nofade
+	ld a, [hSGB]
+	and a
+	jr z, .gbc_fade
+	ld a, [wMusicFade]
 	bit 7, a
-	jr nz, .nofade
+	jp nz, PATCH_FadeMusic_Continue	; don't fade in for SGB
+.gbc_fade
 	ld a, %00000010
 	ld [wCheckAndFadeMusicID], a
 	farcall PATCH_PlayMusic_WithFade	; see patches/bank_02.asm
