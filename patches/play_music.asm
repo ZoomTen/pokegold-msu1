@@ -3,9 +3,7 @@ PATCH_PlayMusic::
 	push hl
 	push de
 	push bc
-	push af
 	call PlayMusic_Common
-	pop af
 	pop bc
 	pop de
 	pop hl
@@ -19,7 +17,6 @@ PATCH_PlayMusic2::
 	push hl
 	push de
 	push bc
-	push af
 
 	push de
 	ld de, 0
@@ -30,7 +27,6 @@ PATCH_PlayMusic2::
 	pop de
 	call PlayMusic_Common
 
-	pop af
 	pop bc
 	pop de
 	pop hl
