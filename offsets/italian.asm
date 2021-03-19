@@ -1,9 +1,9 @@
 ; free space
-	define_location Bank00_FreeSpace,  $3fe5
+	define_location Bank00_FreeSpace,  $3fdd
 IF DEF(_GOLD)
-	define_location Bank01_FreeSpace,  $7586
+	define_location Bank01_FreeSpace,  $7580
 ELIF DEF(_SILVER)
-	define_location Bank01_FreeSpace,  $754d
+	define_location Bank01_FreeSpace,  $7546
 ENDC
 	define_location Bank02_FreeSpace,  $bc40
 	define_location Bank3a_FreeSpace, $ebfb7
@@ -16,11 +16,11 @@ ENDC
 ; stuff to patch
 ; home bank
 	define_home DelayFrame,      $32e
-	define_home GetScriptByte,   $2824
-	define_home PlayMusic,       $3d8f
-	define_home PlayMusic2,      $3db4
-	define_home FadeToMapMusic,  $3e91
-	define_home MaxVolume,       $3e6c
+	define_home GetScriptByte,   $281c
+	define_home PlayMusic,       $3d87
+	define_home PlayMusic2,      $3dac
+	define_home FadeToMapMusic,  $3e89
+	define_home MaxVolume,       $3e64
 	
 ; bank 02
 	define_location MaskEnFreezePacket, 2, $61c5
@@ -37,7 +37,7 @@ ENDC
 	define_location _InitSGBBorderPals,     2, $5d4a
 
 ; bank 25
-	define_location Script_playmusic,       $25, $704d
+	define_location Script_playmusic,       $25, $704b
 
 ; bank 3a
 	define_location _InitSound,             $3a, $4000
