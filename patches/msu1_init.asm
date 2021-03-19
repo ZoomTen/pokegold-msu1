@@ -1,4 +1,7 @@
 SECTION "SGB and MSU1 Bootstrap", ROMX[_InitSGBBorderPals], BANK[BANK__InitSGBBorderPals]	; replace engine/gfx/color/_InitSGBBorderPals
+
+; Initialize MSU-1 interrupts from here
+
 PATCH_InitSGBBorderPals:
 	ld hl, .pointers
 	ld c, 9		; original data snd stuff

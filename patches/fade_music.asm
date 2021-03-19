@@ -1,9 +1,13 @@
+; Main fading routine inside the audio engine
+
 SECTION "Fade Music", ROMX[FadeMusic], BANK[BANK_FadeMusic]
 PATCH_FadeMusic::
 	jp FadeMusic_CheckFade
 	nop
 	nop
 PATCH_FadeMusic_Continue:
+
+; Fires when a new song is loaded
 
 SECTION "Load Audio from Fade 1", ROMX[FadeMusic_LoadNewSong1], BANK[BANK_FadeMusic_LoadNewSong1]
 PATCH_FadeMusic_LoadNewSong1::
@@ -13,6 +17,8 @@ PATCH_FadeMusic_LoadNewSong1::
 	ld [wMusicFade], a
 	ret
 
+; Fires when a new song is ABOUT to be loaded
+
 SECTION "Load Audio from Fade 2", ROMX[FadeMusic_LoadNewSong2], BANK[BANK_FadeMusic_LoadNewSong2]
 PATCH_FadeMusic_LoadNewSong2::
 	call FadeMusic_LoadMusicOnGBC
@@ -20,6 +26,8 @@ PATCH_FadeMusic_LoadNewSong2::
 	ld hl, wMusicFade
 	set 7, [hl]	; set MUSIC_FADE_IN_F, [hl]
 	ret
+
+; Redirected routine to set the fading flags
 
 SECTION "Fade Music Redirect", ROMX[Bank3a_FreeSpace], BANK[$3a]
 FadeMusic_CheckFade::
@@ -35,7 +43,7 @@ FadeMusic_CheckFade::
 .gbc_fade
 	ld a, %00000010
 	ld [wCheckAndFadeMusicID], a
-	farcall PATCH_PlayMusic_WithFade	; see patches/bank_02.asm
+	farcall PATCH_PlayMusic_WithFade	; see patches/msu1_play.asm
 	jp PATCH_FadeMusic_Continue
 	ret
 .nofade
