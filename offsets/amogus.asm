@@ -2,7 +2,7 @@
 ; Amogus: Sus Version
 
 ; free space
-	define_location Bank00_FreeSpace,  $3fec
+	define_home Bank00_FreeSpace,  $3fec
 	define_location Bank01_FreeSpace,  $7546
 	define_location Bank02_FreeSpace,  $bc60
 	define_location Bank3a_FreeSpace, $eb310

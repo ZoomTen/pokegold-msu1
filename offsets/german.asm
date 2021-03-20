@@ -1,5 +1,5 @@
 ; free space
-	define_location Bank00_FreeSpace,  $3fe5
+	define_home Bank00_FreeSpace,  $3fe5
 IF DEF(_GOLD)
 	define_location Bank01_FreeSpace,  $7586
 ELIF DEF(_SILVER)
