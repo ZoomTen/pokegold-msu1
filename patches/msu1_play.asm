@@ -143,3 +143,25 @@ FadeToSilenceMusicPacket:: sgb_data_snd $1800, $0, 1
 	ds 10, 0
 
 include "patches/msu1_looping_modes.asm"
+
+ForceNewMSU1Tune: ; cringe
+	ld a, 1
+	ld hl, wMSU1PacketSend + 5
+	ld [hli], a			; ask for a restart
+					; wMSU1PacketSend + 6
+	ld a, e
+	ld [hli], a			; set new track ID
+					; wMSU1PacketSend + 7
+	inc hl				; wMSU1PacketSend + 8
+	inc hl				; wMSU1PacketSend + 9
+; determine looping mode
+	push hl
+	ld hl, MSU1_LoopingModes
+	add hl, de
+	ld a, [hl]
+	pop hl
+	ld [hl], a			; set looping mode
+
+; send the built packet over
+	ld hl, wMSU1PacketSend
+	jp _PushSGBPals

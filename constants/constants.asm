@@ -14,3 +14,6 @@ wMSU1PacketSend		equ $df20
 ; MSU1 playing modes
 MSU1_PLAY	equ 1
 MSU1_LOOP	equ 3
+
+; This better be free space
+HOME_MSU1TuneScratch	equ $80

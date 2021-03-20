@@ -54,14 +54,27 @@ FadeMusic_CheckFade::
 FadeMusic_LoadMusicOnGBC:
 	ld a, [hSGB]
 	and a
-	ret nz
+	jr nz, .load_sgb
 	ld a, [wMusicFadeID]
 	ld e, a
 	ld a, [wMusicFadeID+1]
 	ld d, a
 	jp _PlayMusic
+.load_sgb
+	ld a, [wMusicFadeID]
+	ld e, a
+	ld a, [wMusicFadeID+1]
+	ld d, a
+	call Home_ForceNewMSU1Tune
+	ret
+	
 
 SECTION "Fade Music Hometo", ROM0[Bank00_FreeSpace]
 Home_PlayMusicFadeTo:
 	homecall PATCH_PlayMusic_WithFade
+	ret
+
+SECTION "Fade Music ForceNewTune", ROM0[HOME_MSU1TuneScratch]
+Home_ForceNewMSU1Tune:
+	homecall ForceNewMSU1Tune
 	ret
