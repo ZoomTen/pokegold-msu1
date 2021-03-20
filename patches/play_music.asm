@@ -19,20 +19,18 @@ PlayMusic_Common:
 SECTION "Play Music with Silence", ROM0[PlayMusic2]
 PATCH_PlayMusic2::
 	push hl
-	push de
 	push bc
-
 	push de
-	ld de, 0
-	call PlayMusic_Common
 
-	call DelayFrame
+		ld de, 0
+		call PlayMusic_Common
+
+		call DelayFrame
 
 	pop de
 	call PlayMusic_Common
 
 	pop bc
-	pop de
 	pop hl
 	ret
 

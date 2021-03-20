@@ -43,9 +43,8 @@ FadeMusic_CheckFade::
 .gbc_fade
 	ld a, %00000010
 	ld [wCheckAndFadeMusicID], a
-	farcall PATCH_PlayMusic_WithFade	; see patches/msu1_play.asm
+	call Home_PlayMusicFadeTo	; see patches/msu1_play.asm
 	jp PATCH_FadeMusic_Continue
-	ret
 .nofade
 	xor a
 	ld [wIsInFade], a
@@ -61,3 +60,8 @@ FadeMusic_LoadMusicOnGBC:
 	ld a, [wMusicFadeID+1]
 	ld d, a
 	jp _PlayMusic
+
+SECTION "Fade Music Hometo", ROM0[Bank00_FreeSpace]
+Home_PlayMusicFadeTo:
+	homecall PATCH_PlayMusic_WithFade
+	ret
