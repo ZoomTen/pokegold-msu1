@@ -12,6 +12,10 @@ ENDC
 ; ram locations
 	define_location wMusicFade,    0, $c1a7
 	define_location wMusicFadeID,  0, $c1a9
+	define_location wChannel5Flags1,  0, $c0cc
+	define_location wChannel6Flags1,  0, $c0fe
+	define_location wChannel7Flags1,  0, $c130
+	define_location wChannel8Flags1,  0, $c162
 ;	define_location wMapMusic,     0, $c1c0
 
 ; stuff to patch
@@ -49,3 +53,6 @@ ENDC
 	define_location FadeMusic_LoadNewSong1, $3a, $438f
 ; under FadeMusic.bicycle
 	define_location FadeMusic_LoadNewSong2, $3a, $43ab
+
+	define_home     WaitSFX,              $3e56
+	define_location Music_ToggleSFX, $3a, $492d

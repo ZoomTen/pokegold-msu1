@@ -34,6 +34,22 @@ PATCH_PlayMusic2::
 	pop hl
 	ret
 
+; Redirect WaitSFX
+SECTION "WaitSFX", ROM0[WaitSFX]
+PATCH_WaitSFX:
+	push hl
+.wait
+	ld hl, wChannel5Flags1
+	bit 0, [hl]
+	jr nz, .wait
+	ld hl, wChannel6Flags1
+	bit 0, [hl]
+	jr nz, .wait
+	ld hl, wChannel7Flags1
+	bit 0, [hl]
+	jr nz, .wait
+	jp PATCH_WaitSFX_Cont	; see fade_music.asm
+
 ; This routine is called inside scripts
 
 SECTION "Play Music in Script", ROMX[Script_playmusic], BANK[BANK_Script_playmusic]

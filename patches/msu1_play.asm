@@ -165,3 +165,31 @@ ForceNewMSU1Tune: ; cringe
 ; send the built packet over
 	ld hl, wMSU1PacketSend
 	jp _PushSGBPals
+
+_ToggleSFXRedirect:
+; apply SFX flags
+	ld hl, 3
+	add hl, bc
+	bit 3, [hl]
+	jr z, .enable
+	res 3, [hl]
+	jr .check_SGB
+.enable
+	set 3, [hl]
+
+.check_SGB
+	ldh a, [hSGB]
+	and a
+	ret z
+	
+	ld hl, DuckMusicPacket
+	call _PushSGBPals
+	ld hl, UpdateVolumePacket
+	jp _PushSGBPals
+
+
+_CallRestoreMusicMSU1:
+	ld hl, UnduckMusicPacket
+	call _PushSGBPals
+	ld hl, UpdateVolumePacket
+	jp _PushSGBPals

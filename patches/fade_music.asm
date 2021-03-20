@@ -74,7 +74,36 @@ Home_PlayMusicFadeTo:
 	homecall PATCH_PlayMusic_WithFade
 	ret
 
+SECTION "ToggleSFX Patch", ROMX[Music_ToggleSFX], BANK[BANK_Music_ToggleSFX]
+PATCH_ToggleSFX:
+	push af
+	push bc
+	push de
+	push hl
+	call Home_ToggleSFXRedirect
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret 
+
 SECTION "Fade Music ForceNewTune", ROM0[HOME_MSU1TuneScratch]
 Home_ForceNewMSU1Tune:
 	homecall ForceNewMSU1Tune
+	ret
+
+; see msu1_play.asm lol
+Home_ToggleSFXRedirect:
+	homecall _ToggleSFXRedirect
+	ret
+
+PATCH_WaitSFX_Cont:
+	ld hl, wChannel8Flags1
+	bit 0, [hl]
+	jp nz, PATCH_WaitSFX.wait
+	pop hl
+	ldh a, [hSGB]
+	and a
+	ret z
+	homecall _CallRestoreMusicMSU1
 	ret
