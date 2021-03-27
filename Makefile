@@ -21,9 +21,11 @@ pokegold_msu1-obj   := gold_patch.o
 pokesilver_msu1-obj := silver_patch.o
 
 
+LOCALE ?= English
+
 # base ROMs
-pokegold_msu1-baserom   ?= \#roms/Gold_English.gb
-pokesilver_msu1-baserom ?= \#roms/Silver_English.gb
+pokegold_msu1-baserom   ?= \#roms/Gold_$(LOCALE).gb
+pokesilver_msu1-baserom ?= \#roms/Silver_$(LOCALE).gb
 
 
 # pseudo targets

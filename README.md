@@ -16,7 +16,7 @@ Of course, the music will not play on an SGB without MSU1 support, such as a reg
   - Ensure the `FLIPS` and `RGBDS` variables in the project's `Makefile` point to the Flips binary and RGBDS directory (respectively).
   - Ensure the `ASSEMBLER` variable in `patches/msu1/Makefile` points to the Asar standalone binary.
 - Localization
-  - In `patches.asm` change `include "offsets/english.asm"` to include the available languages in `offsets` (only English is supported for now)
+  - In `patches.asm` change `include "offsets/english.asm"` to include the available languages in `offsets`
   - Change `pokegold_msu1-baserom` and `pokesilver_msu1-baserom` in the project's `Makefile` so that it points to the appropriate ROM (hashes listed below)
 - Run `make`
 
