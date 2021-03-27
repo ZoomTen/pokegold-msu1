@@ -22,5 +22,7 @@ Home_WaitSFX_Cont:
 	ldh a, [hSGB]
 	and a
 	ret z
+	push de
 	homecall _CallRestoreMusicMSU1
+	pop de
 	ret
