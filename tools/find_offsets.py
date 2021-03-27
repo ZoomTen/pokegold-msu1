@@ -40,6 +40,19 @@ RE_FadeMusic              = re.compile(b'\\xfa..\\xa7\\xc8\\xfa..\\xa7\\x28\\x05
 RE_FadeMusic_LoadNewSong1 = re.compile(b'\\xfa..\\xa7\\x28\\x08\\x5f\\xfa..\\x57\\xcd..\\xc1\\xaf\\xea..\\xc9', re.DOTALL)
 RE_FadeMusic_LoadNewSong2 = re.compile(b'\\xfa..\\x5f\\xfa..\\x57\\xcd..\\xc1\\x21..\\xcb\\xfe\\xc9', re.DOTALL)
 
+RE_FreeSpace = re.compile(b'\\x00{64,}')
+
+RE_WaitSFX = re.compile(b'\\xe5\\x21..\\xcb\\x46\\x20.\\x21..\\xcb\\x46\\x20.\\x21..\\xcb\\x46\\x20.\\x21..\\xcb\\x46\\x20.\\xe1\\xc9')
+
+RE_Music_ToggleSFX = re.compile(b'\\x21\\x03\\x00\\x09\\xcb\\x5e\\x28.\\xcb\\x9e\\xc9')
+
+RE_Home_PlaySFX = re.compile(b'\\xe5\\xd5\\xc5\\xf5\\xcd..\\x30.\\xfa..\\xbb\\x38.\\xf0.\\xf5\\x3e.\\xe0.\\xea\\x00\\x20\\x7b\\xea..\\xcd..\\xf1\\xe0.\\xea\\x00\\x20\\xf1\\xc1\\xd1\\xe1\\xc9')
+
+RE_Home_CheckSFX = re.compile(b'\\xfa..\\xcb\\x47\\x20.\\xfa..\\xcb\\x47\\x20.\\xfa..\\xcb\\x47\\x20.\\xfa..\\xcb\\x47\\x20.\\xa7\\xc9')
+
+RE_Home__PlaySFX = re.compile(b'\\xcd..\\x21..\\xcb\\x46\\x28.\\xcb\\x86\\xaf\\xe0\\x11\\x3e.\\xe0\\x12\\xaf\\xe0\\x13\\x3e.\\xe0\\x14\\xaf\\xea..\\xe0\\x10')
+
+RE_Home_MusicOff = re.compile(b'\\xaf\\xea..\\xc9\\xfa..\\xa7\\xc8\\xaf\\xea..\\xea..')
 
 iters_list = {
 	"DelayFrame": RE_DelayFrame,
@@ -61,6 +74,14 @@ iters_list = {
 	"FadeMusic": RE_FadeMusic,
 	"FadeMusic_LoadNewSong1": RE_FadeMusic_LoadNewSong1,
 	"FadeMusic_LoadNewSong2": RE_FadeMusic_LoadNewSong2,
+	"WaitSFX": RE_WaitSFX,
+	"Music_ToggleSFX": RE_Music_ToggleSFX,
+	
+	"PlaySFX": RE_Home_PlaySFX,
+	"CheckSFX": RE_Home_CheckSFX,
+	"_PlaySFX": RE_Home__PlaySFX,
+	"MusicOff": RE_Home_MusicOff,
+	#"Free space": RE_FreeSpace
 }
 
 def gb2gb(p):
@@ -74,12 +95,14 @@ def gb2gb(p):
 	
 with open(file_name, 'rb') as rom:
 	x = rom.read()
+	print(f"; Offsets for {file_name}")
 	for key, value in iters_list.items():
+		print ("; ",end="")
 		print (key.ljust(32),end="")
 		ctr = 0
 		for i in value.finditer(x):
+			print('; ', end="")
 			if ctr > 0:
-				print(' '*32, end="")
+				print(' '*34, end="")
 			print(f'Possible match: {gb2gb( hex(i.start())[2:] )}')
 			ctr += 1
-		print()

@@ -51,4 +51,5 @@ ENDC
 	define_location FadeMusic_LoadNewSong2, $3a, $43ab
 
 	define_home     WaitSFX,              $3e45
-	define_location Music_ToggleSFX, $3a, $492d
+	define_location Music_PlaySFX,        $3a, $4c04
+	define_location Music_MusicOff,       $3a, $4057
