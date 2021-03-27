@@ -12,6 +12,10 @@ include "offsets/english.asm"
 
 ; patch list
 include "patches/play_music.asm"
+include "patches/play_sfx.asm"
+include "patches/wait_sfx.asm"
+include "patches/fade_music.asm"
 include "patches/msu1_init.asm"
 include "patches/msu1_play.asm"
-include "patches/fade_music.asm"
+include "patches/bank00.asm"
+include "patches/bank3a.asm"

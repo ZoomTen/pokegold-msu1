@@ -166,30 +166,65 @@ ForceNewMSU1Tune: ; cringe
 	ld hl, wMSU1PacketSend
 	jp _PushSGBPals
 
-_ToggleSFXRedirect:
-; apply SFX flags
-	ld hl, 3
-	add hl, bc
-	bit 3, [hl]
-	jr z, .enable
-	res 3, [hl]
-	jr .check_SGB
-.enable
-	set 3, [hl]
-
-.check_SGB
+_CheckSFXAndMusicOffRedirect:
+; check SGB first
 	ldh a, [hSGB]
 	and a
 	ret z
-	
+
+	push de
+; Use a LUT with hardcoded SFX
+; PlaySFX @de
+	ld hl, SFX_LUT
+
+.loop
+	ld a, [hl+]
+	cp -1
+	jr z, .done
+	cp e
+	jr z, .duck
+	jr .loop
+
+.duck
 	ld hl, DuckMusicPacket
 	call _PushSGBPals
 	ld hl, UpdateVolumePacket
-	jp _PushSGBPals
+	call _PushSGBPals
 
+.done
+	pop de
+	ret
 
 _CallRestoreMusicMSU1:
 	ld hl, UnduckMusicPacket
 	call _PushSGBPals
 	ld hl, UpdateVolumePacket
 	jp _PushSGBPals
+
+SFX_LUT:
+	db 1	; sfx_item
+	db 2	; caught mon
+	db 10	; dex 80-109
+	db 45	; unused fanfare 1
+	db 146	; unused fanfare 2
+	db 145	; key item
+	db 147	; phone number
+	db 149	; get egg 1
+	db 150	; get egg 2
+	db 151	; deleted
+	db 148	; 3rd place
+	db 152	; 2nd place
+	db 153	; 1st place
+	db 154	; choose card
+	db 155	; tm
+	db 156	; badge
+	db 157	; slot quit
+	db 159	; dex fanfare <20
+	db 9	; dex fanfare 20-49
+	db 0	; dex fanfare 50-79
+	db 160	; dex fanfare 140-169
+	db 161	; dex fanfare 170-199
+	db 162	; dex fanfare 200-229
+	db 163	; dex fanfare >229
+; end ----------------------------
+	db -1
