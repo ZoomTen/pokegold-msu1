@@ -54,6 +54,8 @@ RE_Home__PlaySFX = re.compile(b'\\xcd..\\x21..\\xcb\\x46\\x28.\\xcb\\x86\\xaf\\x
 
 RE_Home_MusicOff = re.compile(b'\\xaf\\xea..\\xc9\\xfa..\\xa7\\xc8\\xaf\\xea..\\xea..')
 
+RE_Script_FindItemInBall = re.compile(b'\\x0e...\\x08..\\x6d\\xfe\\x47')
+
 iters_list = {
 	"DelayFrame": RE_DelayFrame,
 	"GetScriptByte": RE_GetScriptByte,
@@ -81,6 +83,7 @@ iters_list = {
 	"CheckSFX": RE_Home_CheckSFX,
 	"_PlaySFX": RE_Home__PlaySFX,
 	"MusicOff": RE_Home_MusicOff,
+	"FindItemInBallScript": RE_Script_FindItemInBall,
 	#"Free space": RE_FreeSpace
 }
 

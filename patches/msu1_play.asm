@@ -13,20 +13,10 @@ PATCH_PlayMusic_WithFade::
 	ret z
 	
 	push de
-	  ld a, [wMusicFadeID]
-	  and a
-	  jr z, .force_fade_out
-	  ld e, a
-	  xor a
-	  ld d, a
-	  call SGB_PlayMusic_Common
-	  jr .end
-.force_fade_out
 	  xor a
 	  ld d, a
 	  ld e, a
 	  call SGB_PlayMusic_Common
-.end
 	pop de
 	
 	ld a, 1
@@ -166,7 +156,7 @@ ForceNewMSU1Tune: ; cringe
 	ld hl, wMSU1PacketSend
 	jp _PushSGBPals
 
-_CheckSFXAndMusicOffRedirect:
+_CheckSFXAndMusicOffRedirect::
 ; check SGB first
 	ldh a, [hSGB]
 	and a
