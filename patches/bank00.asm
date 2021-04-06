@@ -12,7 +12,15 @@ Home_ForceNewMSU1Tune:
 
 Home_CheckSFXAndMusicOffRedirect:
 	homecall _CheckSFXAndMusicOffRedirect
-	jp Music_MusicOff
+	ld a, [wSFXNoRun]
+	and a
+	jr nz, .clr_no_run
+	call Music_MusicOff
+	jp PATCH_PlaySFX_Cont
+.clr_no_run
+	xor a
+	ld [wSFXNoRun], a
+	ret
 
 Home_WaitSFX_Cont:
 	ld hl, wChannel8Flags1

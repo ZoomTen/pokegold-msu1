@@ -7,6 +7,7 @@ rst_Bankswitch	equ	$10
 rst_FarCall	equ	$08
 
 ; hardcoded WRAM locations
+wSFXNoRun		equ $df1d
 wIsInFade		equ $df1e
 wCheckAndFadeMusicID	equ $df1f
 wMSU1PacketSend		equ $df20

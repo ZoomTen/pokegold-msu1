@@ -151,7 +151,23 @@ ForceNewMSU1Tune: ; cringe
 	ld a, [hl]
 	pop hl
 	ld [hl], a			; set looping mode
+	jr ForceNewMSU1Tune_SendPacket
 
+ForceNewMSU1Tune_ForceNoLoop: ; cringe x2
+	ld a, 1
+	ld hl, wMSU1PacketSend + 5
+	ld [hli], a			; ask for a restart
+					; wMSU1PacketSend + 6
+	ld a, e
+	ld [hli], a			; set new track ID
+					; wMSU1PacketSend + 7
+	inc hl				; wMSU1PacketSend + 8
+	inc hl				; wMSU1PacketSend + 9
+; determine looping mode
+	ld a, 1
+	ld [hl], a			; set looping mode
+
+ForceNewMSU1Tune_SendPacket:
 ; send the built packet over
 	ld hl, wMSU1PacketSend
 	jp _PushSGBPals
@@ -162,7 +178,15 @@ _CheckSFXAndMusicOffRedirect::
 	and a
 	ret z
 
+; hardcoded SFX-to-MSU1 aliases
+; used for when the fanfare has
+; a weird sequencing thing going on
+	ld a, e
+	cp 2	; caught mon
+	jr z, .caught_mon_sfx
+	
 	push de
+.check_ducked_sfx
 ; Use a LUT with hardcoded SFX
 ; PlaySFX @de
 	ld hl, SFX_LUT
@@ -185,6 +209,16 @@ _CheckSFXAndMusicOffRedirect::
 	pop de
 	ret
 
+.caught_mon_sfx
+	ld de, 93
+	call ForceNewMSU1Tune_ForceNoLoop
+	ld a, 1
+	ld [wSFXNoRun], a
+	ld c, MUL(3.5, 60) ; 3 and a half seconds
+	call DelayFrames
+	ret
+	
+	
 _CallRestoreMusicMSU1:
 	ld hl, UnduckMusicPacket
 	call _PushSGBPals

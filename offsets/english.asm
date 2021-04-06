@@ -22,6 +22,7 @@ ENDC
 ; stuff to patch
 ; home bank
 	define_home DelayFrame,       $32e
+	define_home DelayFrames,      $33c
 	define_home GetScriptByte,   $27f7
 	define_home PlayMusic,       $3d98
 	define_home PlayMusic2,      $3dbd
