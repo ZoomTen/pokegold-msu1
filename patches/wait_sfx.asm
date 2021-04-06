@@ -1,7 +1,7 @@
 ; Redirect WaitSFX
 
 SECTION "WaitSFX", ROM0[WaitSFX]
-PATCH_WaitSFX:
+PATCH_WaitSFX::
 	push hl
 .wait
 	ld hl, wChannel5Flags1
