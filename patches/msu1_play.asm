@@ -178,13 +178,6 @@ _CheckSFXAndMusicOffRedirect::
 	and a
 	ret z
 
-; hardcoded SFX-to-MSU1 aliases
-; used for when the fanfare has
-; a weird sequencing thing going on
-	ld a, e
-	cp 2	; caught mon
-	jr z, .caught_mon_sfx
-	
 	push de
 .check_ducked_sfx
 ; Use a LUT with hardcoded SFX
@@ -209,7 +202,7 @@ _CheckSFXAndMusicOffRedirect::
 	pop de
 	ret
 
-.caught_mon_sfx
+_PlayCaughtMonFanfare::
 	ld de, 93
 	call ForceNewMSU1Tune_ForceNoLoop
 	ld a, 1
@@ -217,7 +210,6 @@ _CheckSFXAndMusicOffRedirect::
 	ld c, MUL(3.5, 60) ; 3 and a half seconds
 	call DelayFrames
 	ret
-	
 	
 _CallRestoreMusicMSU1:
 	ld hl, UnduckMusicPacket

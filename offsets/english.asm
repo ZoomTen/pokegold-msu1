@@ -61,3 +61,4 @@ ENDC
 	define_location Music_MusicOff,       $3a, $4057
 
 	define_location FindItemInBallScript, $04, $66a7
+	define_location TextCommand_SOUND,    $00, $1380

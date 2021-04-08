@@ -1,4 +1,4 @@
-SECTION "SGB and MSU1 Bootstrap", ROMX[_InitSGBBorderPals], BANK[BANK__InitSGBBorderPals]	; replace engine/gfx/color/_InitSGBBorderPals
+SECTION "SGB and MSU1 Bootstrap", ROMX[_InitSGBBorderPals], BANK[BANK__InitSGBBorderPals]
 
 ; Initialize MSU-1 interrupts from here
 
@@ -17,7 +17,8 @@ PATCH_InitSGBBorderPals:
 	pop bc
 	dec c
 	jr nz, .loop
-; UpdateSGBBorder, the function after this, is unreferenced. Clobber over it.
+
+; clobber over unreferenced function
 .bootstrap_msu1
 	ld hl, Packets_bootstrap	; see patches/bank_02.asm
 	ld c, [hl]	; amount of packets to send
