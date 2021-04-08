@@ -65,4 +65,14 @@ PATCH_TextCommand_SOUND_Redirect::
 .gbc
 	ld a, [hl+]
 	jp PATCH_TextCommand_SOUND_Continue
-	
+
+PlayCaughtMonFanfare::
+	ldh a, [hSGB]
+	and a
+	jr z, .gbc
+	homecall _PlayCaughtMonFanfare
+	ret
+.gbc
+	ld de, 2
+	call PlaySFX
+	jp WaitSFX

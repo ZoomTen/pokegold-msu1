@@ -58,6 +58,8 @@ RE_Script_FindItemInBall = re.compile(b'\\x0e...\\x08..\\x6d\\xfe\\x47')
 
 RE_Home_TextCommand_SOUND = re.compile(b'\\xc5\\x2b\\x2a\\x47\\xe5\\x21..\\x2a\\xfe\\xff')
 
+RE_EvolveAfterBattle_PlayCaughtSFX = re.compile(b'\\xd5\\x11\\x00\\x00\\xcd..\\x11\\x02\\x00\\xcd..\\xcd..\\xd1\\x0e\\x28\\xcd..')
+
 iters_list = {
 	"DelayFrame": RE_DelayFrame,
 	"GetScriptByte": RE_GetScriptByte,
@@ -87,6 +89,7 @@ iters_list = {
 	"MusicOff": RE_Home_MusicOff,
 	"FindItemInBallScript": RE_Script_FindItemInBall,
 	"TextCommand_SOUND": RE_Home_TextCommand_SOUND,
+        "EvolveAfterBattle_PlayCaughtSFX": RE_EvolveAfterBattle_PlayCaughtSFX
 	#"Free space": RE_FreeSpace
 }
 

@@ -62,3 +62,5 @@ ENDC
 
 	define_location FindItemInBallScript, $04, $66a7
 	define_location TextCommand_SOUND,    $00, $1380
+	define_location PlaySFX,    $00, $3e24
+	define_location EvolveAfterBattle_PlayCaughtSFX,    $10, $6363
