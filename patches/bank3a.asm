@@ -22,7 +22,7 @@ FadeMusic_CheckFade::
 	ld [wCheckAndFadeMusicID], a
 	ret
 
-FadeMusic_LoadMusicOnGBC:
+FadeMusic_LoadMusicOnGBC::
 	ld a, [hSGB]
 	and a
 	jr nz, .load_sgb

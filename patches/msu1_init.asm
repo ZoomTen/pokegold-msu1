@@ -2,7 +2,7 @@ SECTION "SGB and MSU1 Bootstrap", ROMX[_InitSGBBorderPals], BANK[BANK__InitSGBBo
 
 ; Initialize MSU-1 interrupts from here
 
-PATCH_InitSGBBorderPals:
+PATCH_InitSGBBorderPals::
 	ld hl, .pointers
 	ld c, 9		; original data snd stuff
 .loop

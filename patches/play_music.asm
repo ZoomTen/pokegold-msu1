@@ -10,7 +10,7 @@ PATCH_PlayMusic::
 	pop de
 	pop hl
 	ret
-PlayMusic_Common:
+PlayMusic_Common::
 	homecall PATCH_PlayMusic_Redirect	; see patches/msu1_play.asm
 	ret
 

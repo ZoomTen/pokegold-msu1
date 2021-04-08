@@ -1,4 +1,4 @@
-MSU1_LoopingModes:
+MSU1_LoopingModes::
 ; Music_Nothing
 	db 0
 	

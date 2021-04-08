@@ -134,7 +134,7 @@ FadeToSilenceMusicPacket:: sgb_data_snd $1800, $0, 1
 
 include "patches/msu1_looping_modes.asm"
 
-ForceNewMSU1Tune: ; cringe
+ForceNewMSU1Tune:: ; cringe
 	ld a, 1
 	ld hl, wMSU1PacketSend + 5
 	ld [hli], a			; ask for a restart
@@ -153,7 +153,7 @@ ForceNewMSU1Tune: ; cringe
 	ld [hl], a			; set looping mode
 	jr ForceNewMSU1Tune_SendPacket
 
-ForceNewMSU1Tune_ForceNoLoop: ; cringe x2
+ForceNewMSU1Tune_ForceNoLoop:: ; cringe x2
 	ld a, 1
 	ld hl, wMSU1PacketSend + 5
 	ld [hli], a			; ask for a restart
@@ -167,7 +167,7 @@ ForceNewMSU1Tune_ForceNoLoop: ; cringe x2
 	ld a, 1
 	ld [hl], a			; set looping mode
 
-ForceNewMSU1Tune_SendPacket:
+ForceNewMSU1Tune_SendPacket::
 ; send the built packet over
 	ld hl, wMSU1PacketSend
 	jp _PushSGBPals
@@ -211,13 +211,13 @@ _PlayCaughtMonFanfare::
 	call DelayFrames
 	ret
 	
-_CallRestoreMusicMSU1:
+_CallRestoreMusicMSU1::
 	ld hl, UnduckMusicPacket
 	call _PushSGBPals
 	ld hl, UpdateVolumePacket
 	jp _PushSGBPals
 
-SFX_LUT:
+SFX_LUT::
 	db 1	; sfx_item
 	db 2	; caught mon
 	db 10	; dex 80-109
