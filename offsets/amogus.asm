@@ -6,6 +6,7 @@
 	define_location Bank01_FreeSpace,  $7546
 	define_location Bank02_FreeSpace,  $bc60
 	define_location Bank3a_FreeSpace, $eb310
+	define_location Bank04_FreeSpace, $13e03
 
 ; constants
 ; ram locations
@@ -52,3 +53,8 @@
 	define_home     WaitSFX,              $3e54
 	define_location Music_PlaySFX,        $3a, $4c04
 	define_location Music_MusicOff,       $3a, $4057
+
+	define_location FindItemInBallScript,            $04, $66a7
+	define_location TextCommand_SOUND,               $00, $137e
+	define_location PlaySFX,                         $00, $3e22
+	define_location EvolveAfterBattle_PlayCaughtSFX, $10, $6363

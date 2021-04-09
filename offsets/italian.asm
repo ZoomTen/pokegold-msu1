@@ -7,6 +7,7 @@ ELIF DEF(_SILVER)
 ENDC
 	define_location Bank02_FreeSpace,  $bc40
 	define_location Bank3a_FreeSpace, $ebfb7
+	define_location Bank04_FreeSpace, $13e58
 
 ; constants
 ; ram locations
@@ -53,3 +54,8 @@ ENDC
 	define_home     WaitSFX,              $3e45
 	define_location Music_PlaySFX,        $3a, $4c04
 	define_location Music_MusicOff,       $3a, $4057
+
+	define_location FindItemInBallScript,            $04, $66d3
+	define_location TextCommand_SOUND,               $00, $138c
+	define_location PlaySFX,                         $00, $3e13
+	define_location EvolveAfterBattle_PlayCaughtSFX, $10, $6362

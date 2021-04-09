@@ -60,6 +60,7 @@ RE_Home_TextCommand_SOUND = re.compile(b'\\xc5\\x2b\\x2a\\x47\\xe5\\x21..\\x2a\\
 
 RE_EvolveAfterBattle_PlayCaughtSFX = re.compile(b'\\xd5\\x11\\x00\\x00\\xcd..\\x11\\x02\\x00\\xcd..\\xcd..\\xd1\\x0e\\x28\\xcd..')
 
+RE_DoPlayerEvent = re.compile(b'\\xfa..\\xa7\\xc8\\xfe\\xff\\xc8\\xfe\\x0a\\xd0\\x4f\\x06\\x00\\x21..\\x09\\x09\\x09\\x2a\\xea..\\x2a\\xea..\\x7e\\xea..\\xc9')
 iters_list = {
 	"DelayFrame": RE_DelayFrame,
 	"GetScriptByte": RE_GetScriptByte,
@@ -83,13 +84,14 @@ iters_list = {
 	"WaitSFX": RE_WaitSFX,
 	"Music_ToggleSFX": RE_Music_ToggleSFX,
 	
-	"PlaySFX": RE_Home_PlaySFX,
 	"CheckSFX": RE_Home_CheckSFX,
 	"_PlaySFX": RE_Home__PlaySFX,
 	"MusicOff": RE_Home_MusicOff,
 	"FindItemInBallScript": RE_Script_FindItemInBall,
 	"TextCommand_SOUND": RE_Home_TextCommand_SOUND,
-        "EvolveAfterBattle_PlayCaughtSFX": RE_EvolveAfterBattle_PlayCaughtSFX
+	"PlaySFX": RE_Home_PlaySFX,
+        "EvolveAfterBattle_PlayCaughtSFX": RE_EvolveAfterBattle_PlayCaughtSFX,
+        "DoPlayerEvent": RE_DoPlayerEvent
 	#"Free space": RE_FreeSpace
 }
 
