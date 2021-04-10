@@ -21,6 +21,7 @@ ENDC
 ; stuff to patch
 ; home bank
 	define_home DelayFrame,       $32e
+	define_home DelayFrames,      $33c
 	define_home GetScriptByte,   $27a4
 	define_home PlayMusic,       $3cb9
 	define_home PlayMusic2,      $3cde
@@ -54,7 +55,7 @@ ENDC
 	define_home     WaitSFX,              $3d77
 	define_location Music_PlaySFX,        $3a, $4c04
 	define_location Music_MusicOff,       $3a, $4057
-124f5
+
 	define_location FindItemInBallScript,            $04, $64f5
 	define_location TextCommand_SOUND,               $00, $1366
 	define_location PlaySFX,                         $00, $3d45

@@ -23,6 +23,7 @@ RE_PlayMusic = re.compile(b'\\xe5\\xd5\\xc5\\xf5\\xf0\\x9f\\xf5\\x3e\\x3a\\xe0\\
 RE_PlayMusic2 = re.compile(b'\\xe5\\xd5\\xc5\\xf5\\xf0\\x9f\\xf5\\x3e\\x3a\\xe0\\x9f\\xea\\x00\\x20\\xd5\\x11\\x00\\x00\\xcd..', re.DOTALL)
 RE_FadeToMapMusic = re.compile(b'\\xe5\\xd5\\xc5\\xf5\\xcd..\\xfa..\\xbb\\x28.\\x3e\\x08\\xea..\\x7b\\xea..\\x7a\\xea..', re.DOTALL)
 RE_MaxVolume = re.compile(b'\\x3e\\x77\\xea..\\xc9', re.DOTALL)
+RE_DelayFrames = re.compile(b'\\xcd..\\x0d\\x20\\xfa\\xc9', re.DOTALL)
 
 # bank 02
 RE_MaskEnFreezePacket = re.compile(b'\\xb9\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00', re.DOTALL)
@@ -63,6 +64,7 @@ RE_EvolveAfterBattle_PlayCaughtSFX = re.compile(b'\\xd5\\x11\\x00\\x00\\xcd..\\x
 RE_DoPlayerEvent = re.compile(b'\\xfa..\\xa7\\xc8\\xfe\\xff\\xc8\\xfe\\x0a\\xd0\\x4f\\x06\\x00\\x21..\\x09\\x09\\x09\\x2a\\xea..\\x2a\\xea..\\x7e\\xea..\\xc9')
 iters_list = {
 	"DelayFrame": RE_DelayFrame,
+	"DelayFrames": RE_DelayFrames,
 	"GetScriptByte": RE_GetScriptByte,
 	"PlayMusic": RE_PlayMusic,
 	"PlayMusic2": RE_PlayMusic2,

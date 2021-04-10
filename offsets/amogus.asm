@@ -20,6 +20,7 @@
 ; stuff to patch
 ; home bank
 	define_home DelayFrame,      $32e
+	define_home DelayFrames,      $33c
 	define_home GetScriptByte,   $27f5
 	define_home PlayMusic,       $3d96
 	define_home PlayMusic2,      $3dbb
